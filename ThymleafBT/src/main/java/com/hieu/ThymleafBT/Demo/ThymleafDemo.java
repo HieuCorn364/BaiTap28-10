@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ThymleafDemo {
 	@GetMapping("/hello")
 	public String Hello() {
-		return "Ngo Trung Hieu";
+		return "Ngo Trung Hieu Dep Trai";
 	}
 }
 
