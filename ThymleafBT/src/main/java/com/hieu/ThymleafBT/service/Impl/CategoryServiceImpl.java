@@ -19,4 +19,22 @@ public class CategoryServiceImpl implements CategoryService{
         }
         return categoryRepository.findAll(PageRequest.of(page, size));
     }
+
+	@Override
+	public void saveCategory(CategoryEntity category) {
+		
+		
+	}
+
+	@Override
+	public CategoryEntity getCategoryById(Long id) {
+		
+		return null;
+	}
+
+	@Override
+	public void deleteCategory(Long id) {
+		
+		
+	}
 }	
