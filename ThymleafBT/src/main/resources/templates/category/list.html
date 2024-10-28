@@ -1,16 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/layout}">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
 <head>
-    <title>Danh sách Category</title>
+<title>Danh sách Category</title>
 </head>
 <body>
-    <div layout:fragment="content">
-        <h2>Danh sách Category</h2>
+	<div layout:fragment="content">
+		<h2>Danh sách Category</h2>
+		<form th:action="@{/categories}" method="get">
+			<input type="text" catename="keyword" th:value="${keyword}"
+				placeholder="Tìm kiếm theo tên" />
+			<button type="submit">Tìm kiếm</button>
+		</form>
+
+		<table>
+			<thead>
+				<tr>
+					<th>cateid</th>
+					<th>catename</th>
+					<th>catedecription</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="category : ${categories.content}">
+					<td th:text="${category.cateid}"></td>
+					<td th:text="${category.catename}"></td>
+					<td th:text="${category.catedecription}"></td>
+					<td><a th:href="@{/categories/edit/{cateid}(cateid=${category.cateid})}">Edit</a>
+						<a th:href="@{/categories/delete/{cateid}(cateid=${category.cateid})}">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div>
+			<a th:href="@{/categories?page=${categories.number - 1}}"
+				th:if="${categories.hasPrevious()}">Previous</a> <span
+				th:text="${categories.number + 1}"></span> / <span
+				th:text="${categories.totalPages}"></span> <a
+				th:href="@{/categories?page=${categories.number + 1}}"
+				th:if="${categories.hasNext()}">Next</a>
+		</div>
 
 
-
-    </div>
+	</div>
 </body>
 </html>
